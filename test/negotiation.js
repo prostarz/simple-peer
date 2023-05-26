@@ -1,6 +1,6 @@
-const common = require('./common')
-const Peer = require('../')
-const test = require('tape')
+import common from './common.js'
+import Peer from '../index.js'
+import test from 'tape'
 
 let config
 test('get config', function (t) {

@@ -1,6 +1,6 @@
 // run in a terminal, to do signaling for peers
 
-const ws = require('ws')
+import ws from 'ws'
 
 const server = new ws.Server({
   port: 8080

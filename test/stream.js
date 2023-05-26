@@ -1,7 +1,7 @@
-const common = require('./common')
-const Peer = require('../')
-const str = require('string-to-stream')
-const test = require('tape')
+import common from './common.js'
+import Peer from '../index.js'
+import str from 'string-to-stream'
+import test from 'tape'
 
 let config
 test('get config', function (t) {
@@ -36,7 +36,7 @@ test('duplex stream: send data before "connect" event', function (t) {
   })
 
   peer2.on('data', function (chunk) {
-    t.equal(chunk.toString(), 'abc', 'got correct message')
+    t.equal(Buffer.from(chunk).toString(), 'abc', 'got correct message')
   })
   peer2.on('finish', function () {
     t.pass('got peer2 "finish"')
@@ -75,7 +75,7 @@ test('duplex stream: send data one-way', function (t) {
     })
 
     peer2.on('data', function (chunk) {
-      t.equal(chunk.toString(), 'abc', 'got correct message')
+      t.equal(Buffer.from(chunk).toString(), 'abc', 'got correct message')
     })
     peer2.on('finish', function () {
       t.pass('got peer2 "finish"')

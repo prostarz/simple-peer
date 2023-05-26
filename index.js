@@ -1,11 +1,12 @@
 /*! simple-peer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
-const debug = require('debug')('simple-peer')
-const getBrowserRTC = require('get-browser-rtc')
-const randombytes = require('randombytes')
-const { Duplex } = require('streamx')
-const queueMicrotask = require('queue-microtask') // TODO: remove when Node 10 is not supported
-const errCode = require('err-code')
-const { Buffer } = require('buffer')
+import debug from 'debug'
+import getBrowserRTC from 'get-browser-rtc'
+import { Duplex } from 'streamx'
+import queueMicrotask from 'queue-microtask' // TODO: remove when Node 10 is not supported
+import errCode from 'err-code'
+import { randomBytes, arr2hex, text2arr } from 'uint8-util'
+
+const Debug = debug('simple-peer')
 
 const MAX_BUFFERED_AMOUNT = 64 * 1024
 const ICECOMPLETE_TIMEOUT = 5 * 1000
@@ -35,11 +36,11 @@ class Peer extends Duplex {
 
     this.__objectMode = !!opts.objectMode // streamx is objectMode by default, so implement readable's fuctionality
 
-    this._id = randombytes(4).toString('hex').slice(0, 7)
+    this._id = arr2hex(randomBytes(4)).slice(0, 7)
     this._debug('new peer %o', opts)
 
     this.channelName = opts.initiator
-      ? opts.channelName || randombytes(20).toString('hex')
+      ? opts.channelName || arr2hex(randomBytes(20))
       : null
 
     this.initiator = opts.initiator || false
@@ -242,7 +243,7 @@ class Peer extends Duplex {
 
   /**
    * Send text/binary data to the remote peer.
-   * @param {ArrayBufferView|ArrayBuffer|Buffer|string|Blob} chunk
+   * @param {ArrayBufferView|ArrayBuffer|Uint8Array|string|Blob} chunk
    */
   send (chunk) {
     if (this._destroying) return
@@ -962,7 +963,11 @@ class Peer extends Duplex {
   _onChannelMessage (event) {
     if (this.destroyed) return
     let data = event.data
-    if (data instanceof ArrayBuffer || this.__objectMode === false) data = Buffer.from(data)
+    if (data instanceof ArrayBuffer) {
+      data = new Uint8Array(data)
+    } else if (this.__objectMode === false) {
+      data = text2arr(data)
+    }
     this.push(data)
   }
 
@@ -1014,7 +1019,7 @@ class Peer extends Duplex {
   _debug () {
     const args = [].slice.call(arguments)
     args[0] = '[' + this._id + '] ' + args[0]
-    debug.apply(null, args)
+    Debug.apply(null, args)
   }
 }
 
@@ -1039,4 +1044,4 @@ Peer.config = {
 
 Peer.channelConfig = {}
 
-module.exports = Peer
+export default Peer

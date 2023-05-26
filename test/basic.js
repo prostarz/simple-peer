@@ -1,6 +1,6 @@
-const common = require('./common')
-const Peer = require('../')
-const test = require('tape')
+import common from './common.js'
+import Peer from '../index.js'
+import test from 'tape'
 
 let config
 test('get config', function (t) {
@@ -115,13 +115,13 @@ test('data send/receive text', function (t) {
 
     peer1.send('sup peer2')
     peer2.on('data', function (data) {
-      t.ok(Buffer.isBuffer(data), 'data is Buffer')
-      t.equal(data.toString(), 'sup peer2', 'got correct message')
+      t.ok(ArrayBuffer.isView(data), 'data is Buffer')
+      t.equal(Buffer.from(data).toString(), 'sup peer2', 'got correct message')
 
       peer2.send('sup peer1')
       peer1.on('data', function (data) {
-        t.ok(Buffer.isBuffer(data), 'data is Buffer')
-        t.equal(data.toString(), 'sup peer1', 'got correct message')
+        t.ok(ArrayBuffer.isView(data), 'data is Buffer')
+        t.equal(Buffer.from(data).toString(), 'sup peer1', 'got correct message')
 
         peer1.on('close', function () { t.pass('peer1 destroyed') })
         peer1.destroy()

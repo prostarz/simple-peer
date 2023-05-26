@@ -1,8 +1,8 @@
 // run in a browser, with:
 //   beefy perf/send.js
 
-const Peer = require('simple-peer')
-const stream = require('readable-stream')
+import Peer from 'simple-peer'
+import stream from 'readable-stream'
 
 const buf = Buffer.alloc(10000)
 

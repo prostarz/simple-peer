@@ -1,6 +1,6 @@
-const common = require('./common')
-const Peer = require('../')
-const test = require('tape')
+import common from './common.js'
+import Peer from '../index.js'
+import test from 'tape'
 
 let config
 test('get config', function (t) {
@@ -42,11 +42,11 @@ test('disable trickle', function (t) {
 
     peer1.send('sup peer2')
     peer2.on('data', function (data) {
-      t.equal(data.toString(), 'sup peer2', 'got correct message')
+      t.equal(Buffer.from(data).toString(), 'sup peer2', 'got correct message')
 
       peer2.send('sup peer1')
       peer1.on('data', function (data) {
-        t.equal(data.toString(), 'sup peer1', 'got correct message')
+        t.equal(Buffer.from(data).toString(), 'sup peer1', 'got correct message')
 
         peer1.on('close', function () { t.pass('peer1 destroyed') })
         peer1.destroy()
@@ -88,11 +88,11 @@ test('disable trickle (only initiator)', function (t) {
 
     peer1.send('sup peer2')
     peer2.on('data', function (data) {
-      t.equal(data.toString(), 'sup peer2', 'got correct message')
+      t.equal(Buffer.from(data).toString(), 'sup peer2', 'got correct message')
 
       peer2.send('sup peer1')
       peer1.on('data', function (data) {
-        t.equal(data.toString(), 'sup peer1', 'got correct message')
+        t.equal(Buffer.from(data).toString(), 'sup peer1', 'got correct message')
 
         peer1.on('close', function () { t.pass('peer1 destroyed') })
         peer1.destroy()
@@ -134,11 +134,11 @@ test('disable trickle (only receiver)', function (t) {
 
     peer1.send('sup peer2')
     peer2.on('data', function (data) {
-      t.equal(data.toString(), 'sup peer2', 'got correct message')
+      t.equal(Buffer.from(data).toString(), 'sup peer2', 'got correct message')
 
       peer2.send('sup peer1')
       peer1.on('data', function (data) {
-        t.equal(data.toString(), 'sup peer1', 'got correct message')
+        t.equal(Buffer.from(data).toString(), 'sup peer1', 'got correct message')
 
         peer1.on('close', function () { t.pass('peer1 destroyed') })
         peer1.destroy()

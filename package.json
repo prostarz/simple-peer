@@ -1,7 +1,8 @@
 {
   "name": "@thaunknown/simple-peer",
   "description": "Simple one-to-one WebRTC video/voice and data channels",
-  "version": "9.11.1",
+  "version": "9.12.0",
+  "type": "module",
   "author": {
     "name": "ThaUnknown",
     "email": "casistaken@gmail.com",
@@ -10,20 +11,25 @@
   "bugs": {
     "url": "https://github.com/thaunknown/simple-websocket/issues"
   },
+  "browser": {
+    "wrtc": false
+  },
   "dependencies": {
-    "buffer": "^6.0.3",
     "debug": "^4.3.2",
     "err-code": "^3.0.1",
     "get-browser-rtc": "^1.1.0",
     "queue-microtask": "^1.2.3",
-    "randombytes": "^2.1.0",
-    "streamx": "^2.13.2"
+    "streamx": "^2.13.2",
+    "uint8-util": "^2.1.9"
   },
   "devDependencies": {
-    "airtap": "^4.0.3",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "airtap": "^4.0.4",
     "airtap-manual": "^1.0.0",
+    "babel-minify": "^0.5.2",
+    "babelify": "^10.0.0",
     "airtap-sauce": "^1.1.0",
-    "babel-minify": "^0.5.1",
     "bowser": "^2.11.0",
     "browserify": "^17.0.0",
     "coveralls": "^3.1.1",
@@ -65,7 +71,7 @@
     "// test": "standard && npm run test-node && npm run test-browser",
     "test": "standard && npm run test-browser",
     "test-browser": "airtap --coverage --concurrency 1 -- test/*.js",
-    "test-browser-local": "airtap --coverage --preset local -- test/*.js",
+    "test-browser-local": "airtap --preset local -- test/*.js",
     "test-node": "set WRTC=wrtc && tape test/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

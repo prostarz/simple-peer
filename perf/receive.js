@@ -3,9 +3,9 @@
 
 // 7.6MB
 
-const prettierBytes = require('prettier-bytes')
-const speedometer = require('speedometer')
-const Peer = require('simple-peer')
+import prettierBytes from 'prettier-bytes'
+import speedometer from 'speedometer'
+import Peer from 'simple-peer'
 
 const speed = speedometer()
 
