@@ -1,7 +1,5 @@
-# @thaunknown/simple-peer [![ci][ci-image]][ci-url] [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url] [![javascript style guide][sauce-image]][sauce-url]
+# @thaunknown/simple-peer [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]
 
-[ci-image]: https://img.shields.io/github/workflow/status/thaunknown/simple-peer/ci/master
-[ci-url]: https://github.com/thaunknown/simple-peer/actions
 [coveralls-image]: https://coveralls.io/repos/github/thaunknown/simple-peer/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/thaunknown/simple-peer?branch=master
 [npm-image]: https://img.shields.io/npm/v/@thaunknown/simple-peer.svg
