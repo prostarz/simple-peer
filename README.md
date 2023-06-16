@@ -1,29 +1,21 @@
-# simple-peer [![ci][ci-image]][ci-url] [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url] [![javascript style guide][sauce-image]][sauce-url]
+# @thaunknown/simple-peer [![ci][ci-image]][ci-url] [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url] [![javascript style guide][sauce-image]][sauce-url]
 
-[ci-image]: https://img.shields.io/github/workflow/status/feross/simple-peer/ci/master
-[ci-url]: https://github.com/feross/simple-peer/actions
-[coveralls-image]: https://coveralls.io/repos/github/feross/simple-peer/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/feross/simple-peer?branch=master
-[npm-image]: https://img.shields.io/npm/v/simple-peer.svg
-[npm-url]: https://npmjs.org/package/simple-peer
-[downloads-image]: https://img.shields.io/npm/dm/simple-peer.svg
-[downloads-url]: https://npmjs.org/package/simple-peer
+[ci-image]: https://img.shields.io/github/workflow/status/thaunknown/simple-peer/ci/master
+[ci-url]: https://github.com/thaunknown/simple-peer/actions
+[coveralls-image]: https://coveralls.io/repos/github/thaunknown/simple-peer/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/thaunknown/simple-peer?branch=master
+[npm-image]: https://img.shields.io/npm/v/@thaunknown/simple-peer.svg
+[npm-url]: https://npmjs.org/package/@thaunknown/simple-peer
+[downloads-image]: https://img.shields.io/npm/dm/@thaunknown/simple-peer.svg
+[downloads-url]: https://npmjs.org/package/@thaunknown/simple-peer
 [standard-image]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
 [standard-url]: https://standardjs.com
-[sauce-image]: https://saucelabs.com/buildstatus/simple-peer
-[sauce-url]: https://saucelabs.com/u/simple-peer
 
 #### Simple WebRTC video, voice, and data channels
 
-<h5 align="center">
-  Sponsored by&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://dfinity.org/"><img src="https://cdn.rawgit.com/feross/simple-peer/master/img/dfinity-sponsor.png" alt="DFINITY" width=250 valign="middle"></a>
-</h5>
+This package is a more up to date version of feross's simple-peer, it does away with node:stream and node:buffer in favor of streamx and Uint8Array, making the module a lot smaller, additionally it provides `@thaunknown/simple-peer/lite.js` which is the same peer implementation, but without MediaTrack and MediaStream handling, just pure Uint8/String data.
 
-> We are hiring a peer-to-peer WebRTC mobile Web application expert.
->
-> [DFINITY](http://dfinity.org/) is building an exciting peer-to-peer WebRTC-based mobile Web app to help improve democracy on the Internet Computer blockchain. The mobile web app connects groups of up to four people in a peer-to-peer WebRTC audio and video call so that they can mutually prove unique personhood.
->
-> We are looking for a software engineer or consultant who can help us solve (platform-dependent) reliability issues of our implementation. We are interested in applicants with substantial WebRTC experience for mobile Web apps, experience with different communication patterns (e.g., peer-to-peer, server relay), and substantial problem-solving skills. Having experience in automated testing of this type of applications is a plus. Pay is extremely competitive for the right expertise. For details, please see the [full job description](https://boards.greenhouse.io/dfinity/jobs/5910101002?gh_src=c28327ae2us). 
+It's fully backwards compatible with feross's version.
 
 ## features
 
