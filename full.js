@@ -1,8 +1,7 @@
 /*! simple-peer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 import debug from 'debug'
-import getBrowserRTC from 'get-browser-rtc'
+import { RTCPeerConnection, RTCSessionDescription, RTCIceCandidate } from 'webrtc-polyfill'
 import { Duplex } from 'streamx'
-import queueMicrotask from 'queue-microtask' // TODO: remove when Node 10 is not supported
 import errCode from 'err-code'
 import { randomBytes, arr2hex, text2arr } from 'uint8-util'
 
@@ -27,6 +26,8 @@ function warn (message) {
  * @param {Object} opts
  */
 class Peer extends Duplex {
+  /** @type {RTCPeerConnection} */
+  _pc
   constructor (opts) {
     opts = Object.assign({
       allowHalfOpen: false
@@ -65,11 +66,7 @@ class Peer extends Duplex {
     this.localFamily = undefined
     this.localPort = undefined
 
-    this._wrtc = (opts.wrtc && typeof opts.wrtc === 'object')
-      ? opts.wrtc
-      : getBrowserRTC()
-
-    if (!this._wrtc) {
+    if (!RTCPeerConnection) {
       if (typeof window === 'undefined') {
         throw errCode(new Error('No WebRTC support: Specify `opts.wrtc` option in this environment'), 'ERR_WEBRTC_SUPPORT')
       } else {
@@ -100,7 +97,7 @@ class Peer extends Duplex {
     this._interval = null
 
     try {
-      this._pc = new (this._wrtc.RTCPeerConnection)(this.config)
+      this._pc = new RTCPeerConnection(this.config)
     } catch (err) {
       this.__destroy(errCode(err, 'ERR_PC_CONSTRUCTOR'))
       return
@@ -209,7 +206,7 @@ class Peer extends Duplex {
       }
     }
     if (data.sdp) {
-      this._pc.setRemoteDescription(new (this._wrtc.RTCSessionDescription)(data))
+      this._pc.setRemoteDescription(new RTCSessionDescription(data))
         .then(() => {
           if (this.destroyed) return
 
@@ -230,7 +227,7 @@ class Peer extends Duplex {
   }
 
   _addIceCandidate (candidate) {
-    const iceCandidateObj = new this._wrtc.RTCIceCandidate(candidate)
+    const iceCandidateObj = new RTCIceCandidate(candidate)
     this._pc.addIceCandidate(iceCandidateObj)
       .catch(err => {
         if (!iceCandidateObj.address || iceCandidateObj.address.endsWith('.local')) {
@@ -1023,7 +1020,7 @@ class Peer extends Duplex {
   }
 }
 
-Peer.WEBRTC_SUPPORT = !!getBrowserRTC()
+Peer.WEBRTC_SUPPORT = !!RTCPeerConnection
 
 /**
  * Expose peer and data channel config for overriding all Peer

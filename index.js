@@ -10,7 +10,6 @@ import errCode from 'err-code'
 class Peer extends Lite {
   constructor (opts = {}) {
     super(opts)
-
     if (!this._pc) return
 
     this.streams = opts.streams || (opts.stream ? [opts.stream] : []) // support old "stream" option

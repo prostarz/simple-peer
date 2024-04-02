@@ -2,20 +2,11 @@ import common from './common.js'
 import Peer from '../index.js'
 import test from 'tape'
 
-let config
-test('get config', function (t) {
-  common.getConfig(function (err, _config) {
-    if (err) return t.fail(err)
-    config = _config
-    t.end()
-  })
-})
-
 test('disable trickle', function (t) {
   t.plan(8)
 
-  const peer1 = new Peer({ config, initiator: true, trickle: false, wrtc: common.wrtc })
-  const peer2 = new Peer({ config, trickle: false, wrtc: common.wrtc })
+  const peer1 = new Peer({ initiator: true, trickle: false })
+  const peer2 = new Peer({ trickle: false })
 
   let numSignal1 = 0
   peer1.on('signal', function (data) {
@@ -60,8 +51,8 @@ test('disable trickle', function (t) {
 test('disable trickle (only initiator)', function (t) {
   t.plan(8)
 
-  const peer1 = new Peer({ config, initiator: true, trickle: false, wrtc: common.wrtc })
-  const peer2 = new Peer({ config, wrtc: common.wrtc })
+  const peer1 = new Peer({ initiator: true, trickle: false })
+  const peer2 = new Peer()
 
   let numSignal1 = 0
   peer1.on('signal', function (data) {
@@ -106,8 +97,8 @@ test('disable trickle (only initiator)', function (t) {
 test('disable trickle (only receiver)', function (t) {
   t.plan(8)
 
-  const peer1 = new Peer({ config, initiator: true, wrtc: common.wrtc })
-  const peer2 = new Peer({ config, trickle: false, wrtc: common.wrtc })
+  const peer1 = new Peer({ initiator: true })
+  const peer2 = new Peer({ trickle: false })
 
   let numSignal1 = 0
   peer1.on('signal', function (data) {
@@ -150,8 +141,8 @@ test('disable trickle (only receiver)', function (t) {
 })
 
 test('null end candidate does not throw', function (t) {
-  const peer1 = new Peer({ trickle: true, config, initiator: true, wrtc: common.wrtc })
-  const peer2 = new Peer({ trickle: true, config, wrtc: common.wrtc })
+  const peer1 = new Peer({ trickle: true, initiator: true })
+  const peer2 = new Peer({ trickle: true })
 
   // translate all falsey candidates to null
   let endCandidateSent = false
@@ -180,8 +171,8 @@ test('null end candidate does not throw', function (t) {
 })
 
 test('empty-string end candidate does not throw', function (t) {
-  const peer1 = new Peer({ trickle: true, config, initiator: true, wrtc: common.wrtc })
-  const peer2 = new Peer({ trickle: true, config, wrtc: common.wrtc })
+  const peer1 = new Peer({ trickle: true, initiator: true })
+  const peer2 = new Peer({ trickle: true })
 
   // translate all falsey candidates to null
   let endCandidateSent = false
@@ -210,8 +201,8 @@ test('empty-string end candidate does not throw', function (t) {
 })
 
 test('mDNS candidate does not throw', function (t) {
-  const peer1 = new Peer({ trickle: true, config, initiator: true, wrtc: common.wrtc })
-  const peer2 = new Peer({ trickle: true, config, wrtc: common.wrtc })
+  const peer1 = new Peer({ trickle: true, initiator: true })
+  const peer2 = new Peer({ trickle: true })
 
   peer1.on('error', () => t.fail('peer1 threw error'))
   peer2.on('error', () => t.fail('peer2 threw error'))
@@ -232,8 +223,8 @@ test('mDNS candidate does not throw', function (t) {
 test('ice candidates received before description', function (t) {
   t.plan(3)
 
-  const peer1 = new Peer({ config, initiator: true, wrtc: common.wrtc })
-  const peer2 = new Peer({ config, wrtc: common.wrtc })
+  const peer1 = new Peer({ initiator: true })
+  const peer2 = new Peer()
 
   const signalQueue1 = []
   peer1.on('signal', function (data) {
