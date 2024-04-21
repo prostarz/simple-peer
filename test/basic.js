@@ -2,6 +2,8 @@ import common from './common.js'
 import Peer from '../index.js'
 import test from 'tape'
 
+process.on('uncaughtException', console.error) // User-Initiated Abort, reason=Close called
+
 test('detect WebRTC support', function (t) {
   t.equal(Peer.WEBRTC_SUPPORT, true, 'builtin webrtc support')
   t.end()
@@ -239,7 +241,7 @@ test('ensure iceStateChange fires when connection failed', (t) => {
   t.plan(1)
   const peer = new Peer({ initiator: true })
 
-  peer.on('iceStateChange', (connectionState, gatheringState) => {
+  peer.once('iceStateChange', (connectionState, gatheringState) => {
     t.pass('got iceStateChange')
     t.end()
   })

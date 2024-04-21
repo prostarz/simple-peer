@@ -28,7 +28,7 @@ class Peer extends Lite {
   /**
    * Add a Transceiver to the connection.
    * @param {String} kind
-   * @param {Object} init
+   * @param {Object=} init
    */
   addTransceiver (kind, init) {
     if (this._destroying) return

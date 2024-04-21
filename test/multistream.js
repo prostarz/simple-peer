@@ -3,6 +3,7 @@ import Peer from '../index.js'
 import test from 'tape'
 
 test('multistream', function (t) {
+  if (!process.browser) return t.end()
   if (common.isBrowser('ios')) {
     t.pass('Skip on iOS emulator which does not support this reliably') // iOS emulator issue #486
     t.end()
@@ -47,6 +48,7 @@ test('multistream', function (t) {
 })
 
 test('multistream (track event)', function (t) {
+  if (!process.browser) return t.end()
   t.plan(20)
 
   const peer1 = new Peer({
@@ -88,6 +90,7 @@ test('multistream (track event)', function (t) {
 })
 
 test('multistream on non-initiator only', function (t) {
+  if (!process.browser) return t.end()
   t.plan(30)
 
   const peer1 = new Peer({
@@ -126,6 +129,7 @@ test('multistream on non-initiator only', function (t) {
 })
 
 test('delayed stream on non-initiator', function (t) {
+  if (!process.browser) return t.end()
   if (common.isBrowser('ios')) {
     t.pass('Skip on iOS which does not support this reliably')
     t.end()
@@ -162,6 +166,7 @@ test('delayed stream on non-initiator', function (t) {
 })
 
 test('incremental multistream', function (t) {
+  if (!process.browser) return t.end()
   if (common.isBrowser('ios')) {
     t.pass('Skip on iOS emulator which does not support this reliably') // iOS emulator issue #486
     t.end()
@@ -226,6 +231,7 @@ test('incremental multistream', function (t) {
 })
 
 test('incremental multistream (track event)', function (t) {
+  if (!process.browser) return t.end()
   t.plan(22)
 
   const peer1 = new Peer({
@@ -285,6 +291,7 @@ test('incremental multistream (track event)', function (t) {
 })
 
 test('incremental multistream on non-initiator only', function (t) {
+  if (!process.browser) return t.end()
   if (common.isBrowser('ios')) {
     t.pass('Skip on iOS emulator which does not support this reliably') // iOS emulator issue #486
     t.end()
@@ -334,6 +341,7 @@ test('incremental multistream on non-initiator only', function (t) {
 })
 
 test('incremental multistream on non-initiator only (track event)', function (t) {
+  if (!process.browser) return t.end()
   t.plan(12)
 
   const peer1 = new Peer({
@@ -378,6 +386,7 @@ test('incremental multistream on non-initiator only (track event)', function (t)
 })
 
 test('addStream after removeStream', function (t) {
+  if (!process.browser) return t.end()
   if (common.isBrowser('ios')) {
     t.pass('Skip on iOS which does not support this reliably')
     t.end()
@@ -412,6 +421,7 @@ test('addStream after removeStream', function (t) {
 })
 
 test('removeTrack immediately', function (t) {
+  if (!process.browser) return t.end()
   t.plan(2)
 
   const peer1 = new Peer({ initiator: true })
@@ -450,6 +460,7 @@ test('removeTrack immediately', function (t) {
 })
 
 test('replaceTrack', function (t) {
+  if (!process.browser) return t.end()
   t.plan(4)
 
   const peer1 = new Peer({ initiator: true })

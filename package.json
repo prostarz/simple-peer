@@ -1,7 +1,7 @@
 {
   "name": "@thaunknown/simple-peer",
   "description": "Simple one-to-one WebRTC video/voice and data channels",
-  "version": "9.12.1",
+  "version": "10.0.0",
   "type": "module",
   "author": {
     "name": "ThaUnknown",
@@ -18,8 +18,10 @@
     "debug": "^4.3.4",
     "err-code": "^3.0.1",
     "streamx": "^2.16.1",
-    "uint8-util": "^2.1.9",
-    "webrtc-polyfill": "^1.0.12"
+    "uint8-util": "^2.1.9"
+  },
+  "optionalDependencies": {
+    "webrtc-polyfill": "^1.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -28,6 +30,7 @@
     "airtap-manual": "^1.0.0",
     "babelify": "^10.0.0",
     "bowser": "^2.11.0",
+    "cross-env": "^7.0.3",
     "prettier-bytes": "^1.0.4",
     "speedometer": "^1.1.0",
     "string-to-stream": "^3.0.1",
@@ -59,7 +62,8 @@
   "scripts": {
     "test": "npm run test-node && npm run test-browser",
     "test-browser-local": "airtap --preset local -- test/*.js",
-    "test-node": "tape test/*.js"
+    "test-node": "tape test/*.js",
+    "test-node-debug": "cross-env DEBUG=* tape test/negotiation.js"
   },
   "contributors": [
     {
