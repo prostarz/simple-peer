@@ -28,12 +28,14 @@
     "@babel/preset-env": "^7.20.2",
     "airtap": "^4.0.4",
     "airtap-manual": "^1.0.0",
+    "airtap-system": "^0.1.0",
     "babelify": "^10.0.0",
     "bowser": "^2.11.0",
     "cross-env": "^7.0.3",
     "prettier-bytes": "^1.0.4",
     "speedometer": "^1.1.0",
     "string-to-stream": "^3.0.1",
+    "tap-spec": "^5.0.0",
     "tape": "^5.5.2",
     "thunky": "^1.1.0",
     "ws": "^7.5.3"
@@ -61,7 +63,8 @@
   },
   "scripts": {
     "test": "npm run test-node && npm run test-browser",
-    "test-browser-local": "airtap --preset local -- test/*.js",
+    "test-browser": "airtap --concurrency 1 --all -- test/*.js test/browser/*.js | tap-spec",
+    "test-browser-local": "airtap --preset local -- test/*.js | tap-spec",
     "test-node": "tape test/*.js",
     "test-node-debug": "cross-env DEBUG=* tape test/negotiation.js"
   },
