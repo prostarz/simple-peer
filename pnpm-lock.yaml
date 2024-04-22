@@ -18,8 +18,8 @@ dependencies:
     specifier: ^2.2.4
     version: 2.2.4
   webrtc-polyfill:
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^1.1.1
+    version: 1.1.1
 
 devDependencies:
   '@babel/core':
@@ -5452,9 +5452,8 @@ packages:
       xtend: 4.0.2
     dev: true
 
-  /webrtc-polyfill@1.1.0:
-    resolution: {integrity: sha512-0pG4CI6E0tCGEtNheT/zQa+IGE+iMvrB4X0lcWz48MhBStIMX9qotdbmvW6vXBWN4YJ3B9yrvYvhz3i3K1IFlQ==}
-    requiresBuild: true
+  /webrtc-polyfill@1.1.1:
+    resolution: {integrity: sha512-Df7bpBFIxGl4X0nyIkXM2mzwSEO9fk5pTM7F1U5nfakjCT+qYEvqB7tXYCJQiXiQNYIs4hXNaWxllw04jjPE9g==}
     optionalDependencies:
       node-datachannel: 0.7.0
       node-domexception: 1.0.0
