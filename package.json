@@ -1,7 +1,7 @@
 {
   "name": "@thaunknown/simple-peer",
   "description": "Simple one-to-one WebRTC video/voice and data channels",
-  "version": "10.0.2",
+  "version": "10.0.3",
   "type": "module",
   "author": {
     "name": "ThaUnknown",
@@ -15,12 +15,12 @@
     "debug": "^4.3.4",
     "err-code": "^3.0.1",
     "streamx": "^2.16.1",
-    "uint8-util": "^2.2.4",
-    "webrtc-polyfill": "^1.1.1"
+    "uint8-util": "^2.2.5",
+    "webrtc-polyfill": "^1.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "airtap": "^4.0.4",
     "airtap-manual": "^1.0.0",
     "airtap-system": "^0.1.0",
@@ -31,9 +31,9 @@
     "speedometer": "^1.1.0",
     "string-to-stream": "^3.0.1",
     "tap-spec": "^5.0.0",
-    "tape": "^5.5.2",
+    "tape": "^5.7.5",
     "thunky": "^1.1.0",
-    "ws": "^7.5.3"
+    "ws": "^8.17.0"
   },
   "keywords": [
     "data",
